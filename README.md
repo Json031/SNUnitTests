@@ -1,9 +1,102 @@
 # SNUnitTests
+SNUnitTests 是一个基于 Swift 开发的代码库，集成了 UI 单元测试和 API 单元测试功能，方便开发者对应用程序的 UI 和 API 进行全面的单元测试。
 Integrated UI Unit Testing and API Unit Testing Code Library Developed Based on Swift. 基于Swift开发的集成UI单元测试及API单元测试的代码库。
+
 
 ## Effect demonstration 效果演示
 <p align="center">
   <img src="https://github.com/user-attachments/assets/c93afea4-bbd2-4e64-8706-4c8c67795133" width="300" style="border: 2px solid blue;" />
-  <img src="https://github.com/user-attachments/assets/01569c52-77cb-4fe5-b207-9fbc115b5d42" width="300" style="border: 2px solid blue;" />
-  
+  <img src="https://github.com/user-attachments/assets/01569c52-77cb-4fe5-b207-9fbc115b5d42" width="300" style="border: 2px solid blue;" />  
 </p>
+
+# 功能特性
+## UI 单元测试
+### 查找视图元素：通过标签（tag）递归查找 UIViewController 视图层级中任何层级的 UIView，支持查找 UIButton、UILabel 和 UITableView。
+### 模拟点击事件：支持模拟点击表格视图（UITableView）的单元格和按钮（UIButton），并验证点击后是否跳转到正确的页面。
+### 检查视图存在性：检查特定的 UIView 是否存在于 ViewController 的视图层级中。
+### 检查标签文本：检查 UILabel 的文本是否与预期文本相等。
+### 轮询标签文本：在指定的超时时间内轮询 UILabel 的文本是否等于预期文本。
+### 切换标签栏：支持切换 UITabBarController 的标签项。
+
+## API 单元测试
+### 响应状态码测试：测试 API 响应的状态码是否符合预期。
+### 响应时间测试：测试 API 的响应时间是否在指定的超时时间内。
+### JSON 有效性测试：测试 API 响应是否为有效的 JSON 数据。
+### 必需字段检查：检查 API 响应的 JSON 数据是否包含必需的字段。
+### 404 响应测试：测试无效端点的 API 是否返回 404 状态码。
+### POST 请求测试：测试 API 的 POST 请求是否成功。
+
+# 代码示例
+## UI 单元测试示例
+   ```bash
+      import XCTest
+      import SNUnitTests
+      
+      class MyUITests: XCTestCase {
+          func testUIComponents() {
+              let viewController = MyViewController()
+              let uiTest = SNUITest.create(viewController: viewController)
+              
+              // 点击按钮并验证是否跳转到正确页面
+              let result = uiTest.clickBtnAtTag(tag: 1, nextPageClass: NextViewController.self)
+              XCTAssertTrue(result)
+              
+              // 点击表格视图单元格并验证是否跳转到正确页面
+              let indexPath = IndexPath(row: 0, section: 0)
+              let cellResult = uiTest.clickCellAtIndex(indexPath: indexPath, nextPageClass: NextViewController.self)
+              XCTAssertTrue(cellResult)
+              
+              // 切换标签栏项
+              uiTest.tapTabBarItem(index: 1)
+              
+              // 轮询标签文本
+              let pollingResult = uiTest.pollingLabelText(tag: 2, expectText: "Expected Text", timeOut: 5)
+              XCTAssertTrue(pollingResult)
+          }
+      }
+   ```
+
+## API 单元测试示例
+   ```bash
+      import XCTest
+      import SNUnitTests
+      
+      class MyAPITests: XCTestCase {
+          func testAPIResponses() {
+              let apiTests = SNAPITests()
+              let apiAddress = "https://example.com/api"
+              
+              // 测试 API 响应状态码
+              let statusCodeResult = apiTests.testAPIResponseCode(apiAddress: apiAddress, rspCode: 200, timeOut: 5)
+              XCTAssertTrue(statusCodeResult)
+              
+              // 测试 API 响应时间
+              let responseTimeResult = apiTests.testAPIResponseTime(apiAddress: apiAddress, milliSecondTimeOut: 2000)
+              XCTAssertTrue(responseTimeResult)
+              
+              // 测试 API 响应是否为有效 JSON
+              apiTests.testAPIResponseIsValidJSON(apiAddress: apiAddress)
+              
+              // 测试 API 响应是否包含必需字段
+              apiTests.testAPIResponseContainsRequiredFields(testCase: self, apiAddress: apiAddress)
+              
+              // 测试无效端点的 API 是否返回 404
+              apiTests.testAPINotFoundResponse(testCase: self, apiAddress: "https://example.com/invalid-api")
+              
+              // 测试 API 的 POST 请求
+              apiTests.testAPIPostRequest(testCase: self, apiAddress: apiAddress)
+          }
+      }
+   ```
+
+# 安装与使用
+将 SNUnitTests 代码库集成到你的项目中。
+在需要进行单元测试的文件中导入 SNUnitTests 模块。
+根据上述代码示例编写你的单元测试用例。
+
+# 贡献与反馈
+如果你发现任何问题或有改进建议，请在 GitHub 上提交 issue 或 pull request。
+
+# LICENSE许可证
+本项目采用 MIT 许可证，详情请参阅 LICENSE 文件。
+This project adopts the MIT license, please refer to the [MIT License](https://github.com/Json031/SNUnitTests/blob/main/LICENSE) document for details.
