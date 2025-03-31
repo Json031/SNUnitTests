@@ -11,20 +11,20 @@ Integrated UI Unit Testing and API Unit Testing Code Library Developed Based on 
 
 # 功能特性
 ## UI 单元测试
-### 查找视图元素：通过标签（tag）递归查找 UIViewController 视图层级中任何层级的 UIView，支持查找 UIButton、UILabel 和 UITableView。
-### 模拟点击事件：支持模拟点击表格视图（UITableView）的单元格和按钮（UIButton），并验证点击后是否跳转到正确的页面。
-### 检查视图存在性：检查特定的 UIView 是否存在于 ViewController 的视图层级中。
-### 检查标签文本：检查 UILabel 的文本是否与预期文本相等。
-### 轮询标签文本：在指定的超时时间内轮询 UILabel 的文本是否等于预期文本。
-### 切换标签栏：支持切换 UITabBarController 的标签项。
+* 查找视图元素：通过标签（tag）递归查找 UIViewController 视图层级中任何层级的 UIView，支持查找 UIButton、UILabel 和 UITableView。
+* 模拟点击事件：支持模拟点击表格视图（UITableView）的单元格和按钮（UIButton），并验证点击后是否跳转到正确的页面。
+* 检查视图存在性：检查特定的 UIView 是否存在于 ViewController 的视图层级中。
+* 检查标签文本：检查 UILabel 的文本是否与预期文本相等。
+* 轮询标签文本：在指定的超时时间内轮询 UILabel 的文本是否等于预期文本。
+* 切换标签栏：支持切换 UITabBarController 的标签项。
 
 ## API 单元测试
-### 响应状态码测试：测试 API 响应的状态码是否符合预期。
-### 响应时间测试：测试 API 的响应时间是否在指定的超时时间内。
-### JSON 有效性测试：测试 API 响应是否为有效的 JSON 数据。
-### 必需字段检查：检查 API 响应的 JSON 数据是否包含必需的字段。
-### 404 响应测试：测试无效端点的 API 是否返回 404 状态码。
-### POST 请求测试：测试 API 的 POST 请求是否成功。
+* 响应状态码测试：测试 API 响应的状态码是否符合预期。
+* 响应时间测试：测试 API 的响应时间是否在指定的超时时间内。
+* JSON 有效性测试：测试 API 响应是否为有效的 JSON 数据。
+* 必需字段检查：检查 API 响应的 JSON 数据是否包含必需的字段。
+* 404 响应测试：测试无效端点的 API 是否返回 404 状态码。
+* POST 请求测试：测试 API 的 POST 请求是否成功。
 
 # 代码示例
 ## UI 单元测试示例
