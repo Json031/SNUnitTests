@@ -89,10 +89,28 @@ Integrated UI Unit Testing and API Unit Testing Code Library Developed Based on 
       }
    ```
 
-# 安装与使用
-将 SNUnitTests 代码库集成到你的项目中。
-在需要进行单元测试的文件中导入 SNUnitTests 模块。
-根据上述代码示例编写你的单元测试用例。
+# Installation 安装:
+
+* CocoaPods
+The [SNUnitTests SDK for iOS](https://github.com/Json031/SNUnitTests) is available through [CocoaPods](http://cocoapods.org). If CocoaPods is not installed, install it using the following command. Note that Ruby will also be installed, as it is a dependency of Cocoapods.
+   ```bash
+   brew install cocoapods
+   pod setup
+   ```
+ ```bash
+   $iOSVersion = '11.0'
+   
+   platform :ios, $iOSVersion
+   use_frameworks!
+   
+   target 'YourProjectName' do
+      pod 'SNUnitTests' # Full version with all features
+   end
+   ```
+
+* 手动安装 manual install
+将Classes文件夹拽入项目中，OC项目还需要桥接
+Drag the Classes folder into the project, OC project still needs bridging
 
 # 贡献与反馈
 如果你发现任何问题或有改进建议，请在 GitHub 上提交 issue 或 pull request。
