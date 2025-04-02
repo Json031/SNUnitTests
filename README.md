@@ -123,8 +123,10 @@ The [SNUnitTests SDK for iOS](https://github.com/Json031/SNUnitTests) is availab
 将Classes文件夹拽入项目中，OC项目还需要桥接
 Drag the Classes folder into the project, OC project still needs bridging
 
-* 如果你发现任何问题或有改进建议，请在 GitHub 上提交 [issue](https://github.com/Json031/SNUnitTests/issues) 或 [pull request](https://github.com/Json031/SNUnitTests/pulls)。
+### 问题或改进建议 issues or improvement suggestions
+如果你发现任何问题或有改进建议，请在 GitHub 上提交 [issue](https://github.com/Json031/SNUnitTests/issues) 或 [pull request](https://github.com/Json031/SNUnitTests/pulls)。
 If you find any issues or have improvement suggestions, please submit [issue](https://github.com/Json031/SNUnitTests/issues) Or [pull request][pull request](https://github.com/Json031/SNUnitTests/pulls) on GitHub.
 
-* 本项目采用 MIT 许可证，详情请参阅 [MIT License](https://github.com/Json031/SNUnitTests/blob/main/LICENSE) 文件。
+### MIT 许可证 MIT license
+本项目采用 MIT 许可证，详情请参阅 [MIT License](https://github.com/Json031/SNUnitTests/blob/main/LICENSE) 文件。
 This project adopts the MIT license, please refer to the [MIT License](https://github.com/Json031/SNUnitTests/blob/main/LICENSE) document for details.
