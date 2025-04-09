@@ -2,6 +2,8 @@
 SNUnitTests 是一个基于 Swift 开发的代码库，集成了 UI 单元测试和 API 单元测试功能，方便开发者对应用程序的 UI 和 API 进行全面的单元测试。
 SNUnitTests is a code repository developed based on Swift, which integrates UI unit testing and API unit testing functions, making it convenient for developers to conduct comprehensive unit testing on the UI and API of applications.
 
+* 最新版本 Latest Version: [![CocoaPods](https://img.shields.io/cocoapods/v/SNUnitTests.svg)](https://cocoapods.org/pods/SNUnitTests)
+
 ## Effect demonstration 效果演示
 <p align="center">
   <img src="https://github.com/user-attachments/assets/c93afea4-bbd2-4e64-8706-4c8c67795133" width="300" style="border: 2px solid blue;" />
