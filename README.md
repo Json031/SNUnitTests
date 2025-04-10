@@ -133,7 +133,7 @@ class MyCodesTests: XXXProjectTests {
         }
     }
     
-    func testReleaseOfficalVersion() throws {
+    func testCodes() throws {
         snUnitTests.testMethodCall(classType: UnityTool.self, method: UnityTool.isValidStr(_:), param: "xxx", expected: true)
         
         snUnitTests.testClassMethodCall(method: UnityTool.isEmptyStr(str:), param: "xxx", expected: false)
@@ -148,6 +148,10 @@ class MyCodesTests: XXXProjectTests {
 
 }
 ```
+对象方法与类方法单元测试结果 Object Method and Class Method Unit Test Results:
+![image](https://github.com/user-attachments/assets/c144fa9f-0b01-4b2e-9cf8-7d32a73888bc)
+
+![image](https://github.com/user-attachments/assets/14e7618f-3222-440e-813a-8d8b78dcd3c6)
 
 ### Installation 安装:
 
