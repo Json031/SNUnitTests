@@ -7,7 +7,7 @@
 
 import XCTest
 
-public class SNAPITestsTool: XCTestCase {
+public class SNAPITestsTool: NSObject {
     
     /// test API Response Code
     /// - Parameters:

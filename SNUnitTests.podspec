@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "SNUnitTests"
-  spec.version      = "1.0.0"
+  spec.version      = "1.0.1"
   spec.summary      = "Integrated UI Unit Testing and API Unit Testing Code Library Developed Based on Swift."
 
   # This description is used to generate tags and improve search results.
@@ -26,8 +26,8 @@ Pod::Spec.new do |spec|
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   spec.description  = <<-DESC
 
-Integrated UI Unit Testing and API Unit Testing Code Library Developed Based on Swift.
-基于Swift开发的集成UI单元测试及API单元测试的代码库。
+  SNUnitTests 是一个基于 Swift 开发的代码库，集成了 UI 单元测试和 API 单元测试功能，方便开发者对应用程序的 UI 和 API 进行全面的单元测试。
+  SNUnitTests is a code repository developed based on Swift, which integrates UI unit testing and API unit testing functions, making it convenient for developers to conduct comprehensive unit testing on the UI and API of applications.
 
                    DESC
 
