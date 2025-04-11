@@ -1,6 +1,6 @@
 # SNUnitTests
 SNUnitTests 是一个基于 Swift 开发的代码库，集成了 UI 自动化测试 以及 覆盖 API与类方法等范围的单元测试，方便开发者对应用程序的 UI 、 API等模块 进行全面的自动化单元测试。
-SNUnitTests is a code repository developed based on Swift, which integrates UI unit testing and API unit testing functions, making it convenient for developers to conduct comprehensive unit testing on the UI and API of applications.
+<br>SNUnitTests is a code repository developed based on Swift, which integrates UI unit testing and API unit testing functions, making it convenient for developers to conduct comprehensive unit testing on the UI and API of applications.
 
 * 最新版本 Latest Version: [![CocoaPods](https://img.shields.io/cocoapods/v/SNUnitTests.svg)](https://cocoapods.org/pods/SNUnitTests)
 
@@ -106,7 +106,7 @@ SNUnitTests is a code repository developed based on Swift, which integrates UI u
       }
    ```
 
-### 对象方法与类方法功能性及行为驱动单元测试示例  Example of functional and behavior driven unit testing for object methods and class methods
+### 对象方法与类方法功能性及行为驱动单元测试示例 <br> Example of functional and behavior driven unit testing for object methods and class methods
 ```
 class UnityTool: NSObject {
     class func isEmptyStr(str: String?) -> Bool {
@@ -174,12 +174,12 @@ The [SNUnitTests SDK for iOS](https://github.com/Json031/SNUnitTests) is availab
 
 * 手动安装 manual install
 将Classes文件夹拽入项目中，OC项目还需要桥接
-Drag the Classes folder into the project, OC project still needs bridging
+<br>Drag the Classes folder into the project, OC project still needs bridging
 
-### 问题或改进建议 issues or improvement suggestions
+### 问题或改进建议 <br> issues or improvement suggestions
 如果你发现任何问题或有改进建议，请在 GitHub 上提交 [issue](https://github.com/Json031/SNUnitTests/issues) 或 [pull request](https://github.com/Json031/SNUnitTests/pulls)。
-If you find any issues or have improvement suggestions, please submit [issue](https://github.com/Json031/SNUnitTests/issues) Or [pull request][pull request](https://github.com/Json031/SNUnitTests/pulls) on GitHub.
+<br>If you find any issues or have improvement suggestions, please submit [issue](https://github.com/Json031/SNUnitTests/issues) Or [pull request][pull request](https://github.com/Json031/SNUnitTests/pulls) on GitHub.
 
-### MIT 许可证 MIT license
+### MIT 许可证 <br> MIT license
 本项目采用 MIT 许可证，详情请参阅 [MIT License](https://github.com/Json031/SNUnitTests/blob/main/LICENSE) 文件。
-This project adopts the MIT license, please refer to the [MIT License](https://github.com/Json031/SNUnitTests/blob/main/LICENSE) document for details.
+<br>This project adopts the MIT license, please refer to the [MIT License](https://github.com/Json031/SNUnitTests/blob/main/LICENSE) document for details.
