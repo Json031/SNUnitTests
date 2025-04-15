@@ -18,4 +18,15 @@ public class SNUnitTestsTool: NSObject {
     public class func xctAssertEqual<R: Equatable>(result: R, expected: R) {
         XCTAssertEqual(result, expected, "返回值与预期不一致The return value is inconsistent with the expected value")
     }
+    
+    /// Create XCTestExpectation
+    /// - Parameters:
+    ///   - description: description for test expectation
+    ///   - iterations: iterations count value
+    /// - Returns: XCTestExpectation
+    public class func createXCTestExpectation(description: String, iterations: Int) -> XCTestExpectation {
+        let expectation: XCTestExpectation = XCTestExpectation(description: description)
+        expectation.expectedFulfillmentCount = iterations
+        return expectation
+    }
 }

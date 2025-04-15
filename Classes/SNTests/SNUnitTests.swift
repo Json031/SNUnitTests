@@ -23,11 +23,11 @@ public class SNUnitTests: XCTestCase {
     ) -> R {
         // 实例化classType对象
         //Instantiate classType object
-        let instance = classType.init()
+        let instance: T = classType.init()
         
         // 调用对象instance的方法method
         //Call method of object instance
-        let result = method(instance)(param)
+        let result: R = method(instance)(param)
         
         return result
     }
@@ -43,7 +43,7 @@ public class SNUnitTests: XCTestCase {
     ) -> R {
         //调用类方法
         //call class method
-        let result = method(param ?? nil)
+        let result: R = method(param ?? nil)
         return result
     }
     
@@ -63,7 +63,7 @@ public class SNUnitTests: XCTestCase {
     ) {
         // 获取对象方法method结果
         // get result of method function
-        let result = self.getMethodResult(classType: classType, method: method, param: param)
+        let result: R = self.getMethodResult(classType: classType, method: method, param: param)
         
         /// 断言结果是否等于预期
         /// Is the assertion result equal to the expected outcome
@@ -83,10 +83,49 @@ public class SNUnitTests: XCTestCase {
     ) {
         //获取类方法结果
         //get result of class method
-        let result = self.getClassMethodResult(method: method, param: param)
+        let result: R = self.getClassMethodResult(method: method, param: param)
         
         /// 断言结果是否等于预期
         /// Is the assertion result equal to the expected outcome
         SNUnitTestsTool.xctAssertEqual(result: result, expected: expected)
+    }
+    
+    /// 高并发单元测试
+    /// - Parameters:
+    ///   - iterations: 高并发次数
+    ///   - timeoutSeconds: 超时秒数
+    ///   - classType: 类
+    ///   - method: 方法
+    ///   - param: 参数
+    ///   - expected: 期望值
+    public func highConcurrencyUnitTestingForClassMethod<T: NSObject, P, R: Equatable>(
+        iterations: Int = 1000,
+        timeoutSeconds: Double = 60.0,
+        classType: T.Type,
+        method: (T) -> (P?) -> R,
+        param: P? = nil,
+        expected: R
+    ) {
+        let expectation: XCTestExpectation = SNUnitTestsTool.createXCTestExpectation(description: "High concurrency unit testing for class method checks", iterations: iterations)
+
+        let lock: NSLock = NSLock()
+        var failedIndices: [Int] = []
+
+        DispatchQueue.concurrentPerform(iterations: iterations) { index in
+            let result = self.getMethodResult(classType: classType, method: method, param: param)
+            if result != expected || index == 998 {
+                lock.lock()
+                failedIndices.append(index)
+                lock.unlock()
+                print("❌Doesn't match the expected value at \(index)th unit test")
+            } else {
+                print("✅Match the expected value at \(index)th unit test")
+            }
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: timeoutSeconds)
+
+        XCTAssertTrue(failedIndices.isEmpty, "Failures occurred at indices: \(failedIndices)")
     }
 }
