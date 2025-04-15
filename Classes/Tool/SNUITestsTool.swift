@@ -10,6 +10,9 @@ import XCTest
 public class SNUITestsTool: NSObject {
     
     // MARK: - query sub view
+    /// Select tableView from viewController
+    /// - Parameter viewController: viewController
+    /// - Returns: UITableView
     public class func queryTableViewFromVC(viewController: UIViewController?) -> UITableView {
         var tableView: UITableView?
         for subView: UIView in viewController?.view.subviews ?? [] {
@@ -23,10 +26,18 @@ public class SNUITestsTool: NSObject {
         return tableView!
     }
     
+    /// Select btn from viewController where match the tag param
+    /// - Parameter viewController: viewController
+    /// - Parameter tag: tag
+    /// - Returns: UIButton
     public class func queryBtnFromTag(viewController: UIViewController?, tag: Int) -> UIButton? {
         return SNUITestsTool.queryViewFromTag(viewController: viewController, tag: tag) as? UIButton
     }
     
+    /// Select lab from viewController where match the tag param
+    /// - Parameter viewController: viewController
+    /// - Parameter tag: tag
+    /// - Returns: UILabel
     public class func queryLabFromTag(viewController: UIViewController?, tag: Int) -> UILabel? {
         return SNUITestsTool.queryViewFromTag(viewController: viewController, tag: tag) as? UILabel
     }
@@ -43,7 +54,10 @@ public class SNUITestsTool: NSObject {
     }
 
     // 递归遍历视图层级查找特定 tag 的 UIView
-    //Recursive traversal of view hierarchy to find UIView for a specific tag
+    /// Recursive traversal of view hierarchy to find UIView for a specific tag
+    /// - Parameter viewController: viewController
+    /// - Parameter tag: tag
+    /// - Returns: UIView
     private class func findViewWithTag(_ view: UIView, tag: Int) -> UIView? {
         if view.tag == tag {
             return view
@@ -58,6 +72,10 @@ public class SNUITestsTool: NSObject {
 
     
     // MARK: - click event
+    /// Click tableView at indexPath
+    /// - Parameter tableView: tableView
+    /// - Parameter indexPath: indexPath
+    /// - Returns: result
     public class func tableViewClickIndexPath(tableView: UITableView, indexPath: IndexPath) -> Bool {
         let numberOfSections = tableView.numberOfSections
         XCTAssertTrue(numberOfSections >= indexPath.section, "TableView requires at least \(indexPath.section) sections of data")
@@ -92,6 +110,10 @@ public class SNUITestsTool: NSObject {
         XCTAssertEqual(label?.text, expectedText, "UILabel text mismatch")
     }
     
+    /// Click btn with tag
+    /// - Parameter viewController: viewController
+    /// - Parameter tag: tag
+    /// - Returns: result
     public class func clickBtnAtTag(viewController: UIViewController?, tag: Int) -> Bool {
         let btn: UIButton? = SNUITestsTool.queryBtnFromTag(viewController: viewController, tag: tag)
         // Ensure that tableView has at least indexPath.section sections
@@ -102,6 +124,9 @@ public class SNUITestsTool: NSObject {
     
     // MARK: - View detect
     /// Check if a specific UIView exists in the view hierarchy of the ViewController
+    /// - Parameter viewController: viewController
+    /// - Parameter viewClass: detectView
+    /// - Returns: result
     public class func detectViewIsInViewControllerHierarchy(viewController: UIViewController?, viewClass: AnyClass) -> Bool {
         // Assuming we want to check if a UIButton appears in the view假设我们想检查UIButton是否出现在视图中
         let view = viewController?.view.subviews.first(where: { $0.isKind(of: viewClass.self)  })
@@ -113,6 +138,8 @@ public class SNUITestsTool: NSObject {
     
     /// Check if Push is successful
     /// - Parameter nextPageClass: the next page viewcontroller type
+    /// - Parameter nextPageClass: nextPage class
+    /// - Returns: result
     public class func hasPushPage(viewController: UIViewController?, nextPageClass: AnyClass) -> Bool {
         // Check if a new ViewController has been pushed
         if let navigationController = viewController?.navigationController {
