@@ -59,7 +59,8 @@ public class SNUnitTests: XCTestCase {
         classType: T.Type,
         method: (T) -> (P?) -> R,
         param: P? = nil,
-        expected: R
+        expected: R,
+        failMessage: String? = nil
     ) {
         // 获取对象方法method结果
         // get result of method function
@@ -67,7 +68,7 @@ public class SNUnitTests: XCTestCase {
         
         /// 断言结果是否等于预期
         /// Is the assertion result equal to the expected outcome
-        SNUnitTestsTool.xctAssertEqual(result: result, expected: expected)
+        SNUnitTestsTool.xctAssertEqual(result: result, expected: expected, failMessage: failMessage)
     }
     
     /// 测试类方法method传参param得到的结果是否与预期expected一致
@@ -79,7 +80,8 @@ public class SNUnitTests: XCTestCase {
     public func testClassMethodCall<P, R: Equatable>(
         method: (P?) -> R,
         param: P? = nil,
-        expected: R
+        expected: R,
+        failMessage: String? = nil
     ) {
         //获取类方法结果
         //get result of class method
@@ -87,7 +89,7 @@ public class SNUnitTests: XCTestCase {
         
         /// 断言结果是否等于预期
         /// Is the assertion result equal to the expected outcome
-        SNUnitTestsTool.xctAssertEqual(result: result, expected: expected)
+        SNUnitTestsTool.xctAssertEqual(result: result, expected: expected, failMessage: failMessage)
     }
     
     /// 高并发单元测试
@@ -104,8 +106,10 @@ public class SNUnitTests: XCTestCase {
         classType: T.Type,
         method: (T) -> (P?) -> R,
         param: P? = nil,
-        expected: R
+        expected: R,
+        verbose: Bool = false
     ) {
+        //兼容异步环境Compatible with asynchronous environments
         let expectation: XCTestExpectation = SNUnitTestsTool.createXCTestExpectation(description: "High concurrency unit testing for class method checks", iterations: iterations)
 
         let lock: NSLock = NSLock()
@@ -113,13 +117,17 @@ public class SNUnitTests: XCTestCase {
 
         DispatchQueue.concurrentPerform(iterations: iterations) { index in
             let result = self.getMethodResult(classType: classType, method: method, param: param)
-            if result != expected || index == 998 {
+            if result != expected {
                 lock.lock()
                 failedIndices.append(index)
                 lock.unlock()
-                print("❌Doesn't match the expected value at \(index)th unit test")
+                if verbose {
+                    print("❌Doesn't match the expected value at \(index)th unit test, expected: \(expected), but got: \(result)")
+                }
             } else {
-                print("✅Match the expected value at \(index)th unit test")
+                if verbose {
+                    print("✅Match the expected value at \(index)th unit test")
+                }
             }
             expectation.fulfill()
         }

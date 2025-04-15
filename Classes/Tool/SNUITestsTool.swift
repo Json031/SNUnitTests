@@ -7,7 +7,7 @@
 
 import XCTest
 
-public class SNUITestsTool: NSObject {
+public class SNUITestsTool {
     
     // MARK: - query sub view
     /// Select tableView from viewController
