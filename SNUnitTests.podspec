@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "SNUnitTests"
-  spec.version      = "1.0.1"
+  spec.version      = "1.0.2"
   spec.summary      = "Integrated UI Unit Testing and API Unit Testing Code Library Developed Based on Swift."
 
   # This description is used to generate tags and improve search results.
