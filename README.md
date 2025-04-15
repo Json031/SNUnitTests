@@ -156,7 +156,14 @@ class MyCodesTests: XXXProjectTests {
 
 ###  类方法的高并发单元测试 <br>High concurrency unit testing for class methods.
 ```
-snUnitTests.highConcurrencyUnitTestingForClassMethod(iterations: 1000, timeoutSeconds: 1000, classType: UnityTool.self, method: UnityTool.isValidStr(_:), param: "sdnjanf", expected: true)
+//示例：对类UnityTool的类方法isValidStr进行高并发测试1000次，超时时间1000秒
+//Example: Conduct high concurrency testing on the class method isValidStr of UnityTool 1000 times, with a timeout of 1000 seconds
+snUnitTests.highConcurrencyUnitTestingForClassMethod(iterations: 1000,
+                                                     timeoutSeconds: 1000,
+                                                     classType: UnityTool.self,
+                                                     method: UnityTool.isValidStr(_:),
+                                                     param: "sdnjanf",
+                                                     expected: true)
 ```
 ![高并发单元测试](https://github.com/user-attachments/assets/bcce044f-e8e7-46b1-86fb-9474073e2c5c)
 
