@@ -3,7 +3,7 @@
 //
 //  Created by MorganChen on 2025/4/9.
 //  Copyright © 2025 MorganChen. All rights reserved.
-//https://github.com/Json031/SNUnitTest
+//https://github.com/Json031/SNUnitTests
 //
 
 import XCTest
