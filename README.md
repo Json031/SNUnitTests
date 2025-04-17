@@ -6,6 +6,35 @@ SNUnitTests 是一个基于XCTest框架开发的Swift开源项目，集成了 UI
 
 * 最新版本 Latest Version: [![CocoaPods](https://img.shields.io/cocoapods/v/SNUnitTests.svg)](https://cocoapods.org/pods/SNUnitTests)
 
+### Installation 安装:
+
+* CocoaPods
+The [SNUnitTests SDK for iOS](https://github.com/Json031/SNUnitTests) is available through [CocoaPods](http://cocoapods.org). If CocoaPods is not installed, install it using the following command. Note that Ruby will also be installed, as it is a dependency of Cocoapods.
+
+```bash
+    brew install cocoapods
+    pod setup
+```
+```bash
+   $iOSVersion = '11.0'
+   
+   platform :ios, $iOSVersion
+   use_frameworks!
+   
+   target 'YourProjectName' do
+
+       target 'YourProjectNameTests' do
+          inherit! :search_paths
+
+          pod 'SNUnitTests' # Full version with all features
+       end
+   end
+```
+
+* 手动安装 manual install
+将Classes文件夹拽入项目中，OC项目还需要桥接
+<br>Drag the Classes folder into the project, OC project still needs bridging
+
 ## Effect demonstration 效果演示
 <p align="center">
   <img src="https://github.com/user-attachments/assets/c93afea4-bbd2-4e64-8706-4c8c67795133" width="300" style="border: 2px solid blue;" />
@@ -169,30 +198,6 @@ snUnitTests.highConcurrencyUnitTestingForClassMethod(iterations: 1000,
 ```
 ![高并发单元测试](https://github.com/user-attachments/assets/73ccec3e-bb8e-45d2-956f-c6662029ab59)
 
-
-
-### Installation 安装:
-
-* CocoaPods
-The [SNUnitTests SDK for iOS](https://github.com/Json031/SNUnitTests) is available through [CocoaPods](http://cocoapods.org). If CocoaPods is not installed, install it using the following command. Note that Ruby will also be installed, as it is a dependency of Cocoapods.
-   ```bash
-   brew install cocoapods
-   pod setup
-   ```
- ```bash
-   $iOSVersion = '11.0'
-   
-   platform :ios, $iOSVersion
-   use_frameworks!
-   
-   target 'YourProjectName' do
-      pod 'SNUnitTests' # Full version with all features
-   end
-   ```
-
-* 手动安装 manual install
-将Classes文件夹拽入项目中，OC项目还需要桥接
-<br>Drag the Classes folder into the project, OC project still needs bridging
 
 ### 问题或改进建议 <br> issues or improvement suggestions
 如果你发现任何问题或有改进建议，请在 GitHub 上提交 [issue](https://github.com/Json031/SNUnitTests/issues) 或 [pull request](https://github.com/Json031/SNUnitTests/pulls)。
