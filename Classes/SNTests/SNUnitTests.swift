@@ -100,11 +100,10 @@ public class SNUnitTests: XCTestCase {
     ///   - method: 方法
     ///   - param: 参数
     ///   - expected: 期望值
-    public func highConcurrencyUnitTestingForClassMethod<T: NSObject, P, R: Equatable>(
+    public func highConcurrencyUnitTestingForClassMethod<P, R: Equatable>(
         iterations: Int = 1000,
         timeoutSeconds: Double = 60.0,
-        classType: T.Type,
-        method: (T) -> (P?) -> R,
+        method: (P?) -> R,
         param: P? = nil,
         expected: R,
         verbose: Bool = false
@@ -115,6 +114,51 @@ public class SNUnitTests: XCTestCase {
         let lock: NSLock = NSLock()
         var failedIndices: [Int] = []
 
+        DispatchQueue.concurrentPerform(iterations: iterations) { index in
+            let result = self.getClassMethodResult(method: method, param: param)
+            if result != expected {
+                lock.lock()
+                failedIndices.append(index)
+                lock.unlock()
+                if verbose {
+                    print("❌Doesn't match the expected value at \(index)th unit test, expected: \(expected), but got: \(result)")
+                }
+            } else {
+                if verbose {
+                    print("✅Match the expected value at \(index)th unit test")
+                }
+            }
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: timeoutSeconds)
+
+        XCTAssertTrue(failedIndices.isEmpty, "Failures occurred at indices: \(failedIndices)")
+    }
+    
+    /// 高并发单元测试
+    /// - Parameters:
+    ///   - iterations: 高并发次数
+    ///   - timeoutSeconds: 超时秒数
+    ///   - classType: 类
+    ///   - method: 方法
+    ///   - param: 参数
+    ///   - expected: 期望值
+    public func highConcurrencyUnitTestingForMethod<T: NSObject, P, R: Equatable>(
+        iterations: Int = 1000,
+        timeoutSeconds: Double = 60.0,
+        classType: T.Type,
+        method: (T) -> (P?) -> R,
+        param: P? = nil,
+        expected: R,
+        verbose: Bool = false
+    ) {
+        //兼容异步环境Compatible with asynchronous environments
+        let expectation: XCTestExpectation = SNUnitTestsTool.createXCTestExpectation(description: "High concurrency unit testing for method checks", iterations: iterations)
+
+        let lock: NSLock = NSLock()
+        var failedIndices: [Int] = []
+        
         DispatchQueue.concurrentPerform(iterations: iterations) { index in
             let result = self.getMethodResult(classType: classType, method: method, param: param)
             if result != expected {
@@ -136,4 +180,33 @@ public class SNUnitTests: XCTestCase {
 
         XCTAssertTrue(failedIndices.isEmpty, "Failures occurred at indices: \(failedIndices)")
     }
+    
+    
+    /// 效率性能检测 Efficiency Performance Testing
+    /// - Parameters:
+    ///   - iterations: 迭代次数，默认10次 Iteration times, default is 10 time
+    ///   - threshold: 最低耗时要求，单位秒 Minimum consumption time requirement, in seconds
+    ///   - block: 检测对象运行代码块block    Detecting object running code block
+    ///   - failMessage: 失败提示，默认nil    Failure prompt default is nil
+    public func efficiencyPerformanceTesting(
+        iterations: Int = 10,
+        threshold: Double,
+        block: () -> Void,
+        failMessage: String? = nil
+    ) {
+        var totalTime: Double = 0.0
+
+        for _ in 0..<iterations {
+            let startTime = CFAbsoluteTimeGetCurrent()
+            block()
+            let elapsed = CFAbsoluteTimeGetCurrent() - startTime
+            totalTime += elapsed
+        }
+        
+        let averageTime = totalTime / Double(iterations)
+        let message = failMessage ?? "Execution time exceeds the expected threshold of \(threshold)s, actual time consumption: \(averageTime)s, number of iterations:\(iterations)"
+        print("EficiencyPerformanceTesting time cost \(averageTime)s, number of iterations:\(iterations)")
+        XCTAssertLessThanOrEqual(averageTime, threshold, message)
+    }
+
 }
