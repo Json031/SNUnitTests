@@ -1,10 +1,14 @@
 <h1 align="center"><a href="https://github.com/Json031/SNUnitTestsOC"><img src="https://img.shields.io/badge/Objective--C-007AFF?logo=apple&logoColor=white" title="Objective-C" float=left></a><strong><a href="https://github.com/Json031/SNUnitTestsOC">Click here to go to the Objective-C version</a></strong></h1>
 
 # SNUnitTests
+[![CocoaPods](https://img.shields.io/cocoapods/v/SNUnitTests.svg)](https://cocoapods.org/pods/SNUnitTests)
+![Swift 5](https://img.shields.io/badge/Swift-5.0-orange.svg)
+[![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/Json031/SNUnitTests/blob/main/LICENSE)
+<br>
 SNUnitTests 是一个基于XCTest框架开发的Swift开源项目，集成了 UI 自动化测试、高并发 以及 覆盖 API与类方法等范围的单元测试，方便开发者对应用程序的 UI 、 API、类方法高并发等模块 进行全面的自动化单元测试。
 <br>SNUnitTests is a Swift open source project developed based on the XCTest framework, which integrates UI automation testing, high concurrency, and unit testing covering APIs and class methods, making it convenient for developers to understand the UI API、 Conduct comprehensive automated unit testing on high concurrency modules such as class methods.
 
-* 最新版本 Latest Version: [![CocoaPods](https://img.shields.io/cocoapods/v/SNUnitTests.svg)](https://cocoapods.org/pods/SNUnitTests)
+* 最新版本 Latest Version: 
 
 # Installation 安装:
 
